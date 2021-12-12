@@ -34,4 +34,6 @@ done
 #ik ben 2 dagen volop hiermee bezig geweest alleen heb ik het niet af kunnen krijgen, ik vind het namelijk erg leuk met linux te werken alleen moet ik zo ontzettend veel
 #opzoeken vanwege de gebrek aan kennis dat het mij simpelweg niet lukt om alle geleerde kennis toe te passen.
 
+#Jeffrey en ik zijn op een gegeven moment ook bijeen gekomen om te kijken of we elkaar konden helpen
+
 
