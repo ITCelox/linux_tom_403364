@@ -28,6 +28,7 @@ done
 #ik had ook met user input kunnen werken, maar dit lijkt met niet nodig en is nog een stuk moeilijker
 
 #verder moet ik nog een situatie maken waarin het niet lukt 
+#ik snap erg veel wat alles betekent en wat het doet alleen vind ik het erg lastig om alles te implementeren op de juiste manier
 
 #ik heb daarom ook vanwege gebrek aan tijd dit niet af kunnen krijgen, ik struggle erg veel met het opzoeken en uitvoeren van de kennis die ik opdoe tijdens dit proces
 #ik ben 2 dagen volop hiermee bezig geweest alleen heb ik het niet af kunnen krijgen, ik vind het namelijk erg leuk met linux te werken alleen moet ik zo ontzettend veel
