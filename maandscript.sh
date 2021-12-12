@@ -5,7 +5,7 @@ for f in i=1
 do
         cd $maand
         pwd
-        for f in i=1
+        for f in *
         do
                 if [ -d $maand ]
                 then 
@@ -18,13 +18,27 @@ do
                                 find /home/tom/fotofolder -type f -mtime +30 -exec cp -f {} /home/tom/oktober \;
                         fi
                 fi
+
+                foto=$(sudo md5sum "$HOME"/fotofolder/"$f" | cut -d " " -f1)
+                okt=$(sudo md5sum "$HOME"/oktober/"$f" | cut -d " " -f1)
+                if [ "$foto" = "$okt" ]
+                then
+                        rm "$f"
+                else
+                        echo "Copy was niet gelukt"
+                fi
         done
 done
+
+
 
 #ik mis nog een aantal dingen in plaats van dat ik -mtime +30 gebruikt voor de files ouder 
 #dan 30 dagen wat op een andere manier moet want het moet namelijk per maand worden en niet alles in 1 folder
 
 #ik mis nog het gebruik van md5sum doormiddel van md5sum zou je dan kunnen kijken wat er verwijderd moet worden in de oude map wanneer iets is gecopied in de nieuwe map
+#ik heb het zover voor elkaar gekregen dat alles ouder is dan 30 dagen verwijderd wordt in de oude folder en in de nieuwe folder blijft staan / wordt gecopied
+#ik heb daarnaast tijdens het uitvoeren van het script nog wat errors gekregen door de for loop omdat ie nu 6* checkt (omdat ik 6 .jpeg files heb) en in de nieuwe oktober folder
+#niet 6 files staan, maar dit hinderd de werking niet hij copied en verwijderd nog wel gewoon zoals het hoort.
 #ik had ook met user input kunnen werken, maar dit lijkt met niet nodig en is nog een stuk moeilijker
 
 #verder moet ik nog een situatie maken waarin het niet lukt 
