@@ -7,12 +7,20 @@ fotofolder=/home/tom/fotofolder
 
 #dit is een cleaning tool die de folder vooraf schoonmaakt voor gebruik van de copy tool
 read -p "wil je de cleaning folder tool gebruiken [klik dan 1] >>>" i
+#! /bin/bash
+
+i=0
+oktober=/home/tom/oktober
+fotofolder=/home/tom/fotofolder
+
+#dit is een cleaning tool die de folder vooraf schoonmaakt voor gebruik van de copy tool
+read -p "wil je de cleaning folder tool gebruiken [klik dan 1] >>>" i
 if [ "$i" -eq 1 ];
 then
-        if [ "$(ls -A /home/tom/oktober)" ];
+        if [ "$(ls -A /home/tom/"$oktobermaand")" ];
         then
                 echo "This tool will clean the directory right now"
-                cd "$oktober"
+                cd "$oktobermaand"
                 rm -r *.jpeg
                 cd /home/tom
                 echo "Done cleaning"
@@ -32,26 +40,33 @@ cd "$fotofolder"
 for f in *
 do
         oktobermaand=$(date -r "$f" +%m)
-        if [ -d "$oktober" ]
+        if [ -d "$oktobermaand" ]
         then
                 echo "Ah we see that oktober is empty, initiating copy!!!"
                 echo "You will now see which files have been copied"
                 if [ "$oktobermaand" -le 13 ];
                 then
-                                cp -v "$f" "$oktober"
+                                cp -v "$f" /home/tom/"$oktobermaand"
                 else
                                 echo "fotofolder consists of young files only"
                 fi
 
         else
-                mkdir /home/tom/oktober
-                echo "oktober dir has been made"
-                cp -v "$f" "$oktober"
+                if [ "$oktobermaand" -le 13 ];
+                then
+                        if [ -d "$oktobermaand" ]
+                        then
+                                cp -v "$f" /home/tom/"$oktobermaand"
+                        else
+                                mkdir -p /home/tom/"$oktobermaand"
+                                cp -v "$f" /home/tom/"$oktobermaand"
+                        fi
+                fi
         fi
 
 
         original=$(sudo md5sum "$HOME"/fotofolder/"$f" | cut -d " " -f1)
-        new=$(sudo md5sum "$HOME"/oktober/"$f" | cut -d " " -f1)
+        new=$(sudo md5sum "$HOME"/"$oktobermaand"/"$f" | cut -d " " -f1)
         if [ "$original" = "$new" ]
         then
                 rm "$f"
