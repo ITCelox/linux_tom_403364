@@ -1,1 +1,1 @@
-grep -E -o "[a-z|A-Z|0-9]{1,30}@shaw.(net|com)" access_log.txt
+grep -E -o "[a-z|A-Z|0-9]{1,99}@shaw.(net|com)" access_log.txt
