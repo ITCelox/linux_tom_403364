@@ -1,0 +1,29 @@
+#!/bin/bash
+
+sudo apt-get install rsyslog -y
+
+sudo rsyslogd -v
+
+sudo systemctl status rsyslog
+
+sudo sed -i "$ModLoad imudp" /etc/rsyslog.conf
+
+sudo sed -i "$UDPServerRun 514" /etc/rsyslog.conf
+
+sudo sed -i "$ModLoad imtcp" /etc/rsyslog.conf
+
+sudo sed -i "$InputTCPServerRun 514" /etc/rsyslog.conf
+
+sudo sed -i "$AllowedSender TCP, 127.0.0.1, 10.1.0.0/24, *.example.com" /etc/rsyslog.conf
+
+sudo sed -i "$AllowedSender UDP, 127.0.0.1, 10.1.0.0/24, *.example.com" /etc/rsyslog.conf
+
+sudo sed -i "$template remote-incoming-logs, "/var/log/%HOSTNAME%/%PROGRAMNAME%.log" " /etc/rsyslog.conf
+
+sudo sed -i "*.* ?remote-incoming-logs" /etc/rsyslog.conf
+
+rsyslogd -f /etc/rsyslog.conf -N1
+
+systemctl restart rsyslog
+
+netstat -4altunp | grep 514
