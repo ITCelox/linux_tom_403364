@@ -1,0 +1,9 @@
+#!/bin/bash
+
+sudo apt install munin-node
+
+sudo sed -i "/allow.*::1/ a allow ^10\.1\.0\.56$" /etc/munin/munin-node.conf
+
+sudo systemctl restart munin-node
+
+sudo systemctl status munin-node
