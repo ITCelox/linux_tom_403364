@@ -1,0 +1,15 @@
+#!/bin/bash
+
+sudo apt install apache2
+
+sudo apt-get install munin
+
+sudo sed -i "/#.*::1/ a \ \ \ \ use_node_name yes" /etc/munin/munin.conf
+
+sudo sed -i "/#.*::1/ a \ \ \ \ address 10.1.0.71" /etc/munin/munin.conf
+
+sudo sed -i "/#.*::1/ a [muninclient1]" /etc/munin/munin.conf
+
+sudo systemctl restart munin
+
+sudo systemctl status munin
