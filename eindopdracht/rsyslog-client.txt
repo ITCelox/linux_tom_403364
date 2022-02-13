@@ -1,0 +1,17 @@
+#!/bin/bash
+
+sudo sed -i "*.* @10.1.0.56:514" /etc/rsyslog.conf
+
+sudo sed -i "*.* @@10.1.0.56:514" /etc/rsyslog.conf
+
+sudo sed -i "$ActionQueueFileName queue" /etc/rsyslog.conf
+
+sudo sed -i "$ActionQueueMaxDiskSpace 1g" /etc/rsyslog.conf
+
+sudo sed -i "$ActionQueueSaveOnShutdown on" /etc/rsyslog.conf
+
+sudo sed -i "$ActionQueueType LinkedList" /etc/rsyslog.conf
+
+sudo sed -i "$ActionResumeRetryCount -1" /etc/rsyslog.conf
+
+systemtcl restart rsyslog
